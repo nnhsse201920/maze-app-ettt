@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Square
 {
     public static final int SPACE = 0;
@@ -76,5 +78,23 @@ public class Square
             }
         }
         return str;
+    }
+
+
+    public boolean equals(Square o) {
+        // self check
+        if (this == o)
+            return true;
+        // null check
+        if (o == null)
+            return false;
+        // type check and cast
+        if (this.getType() != o.getType())
+            return false;
+        Square sq = (Square) o;
+        // field comparison
+        return Objects.equals(o.getCol(), this.getCol())
+                && Objects.equals(o.getRow(), this.getRow())
+                && Objects.equals(o.getType(), this.getType());
     }
 }
