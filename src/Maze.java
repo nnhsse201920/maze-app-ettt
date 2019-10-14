@@ -140,12 +140,12 @@ public class Maze
     }
     public void reset()
     {
-        for (int r = 0; r < this.row; r++) {
+  /*      for (int r = 0; r < this.row; r++) {
             for (int c = 0; c < this.col; c++)
             {
                 maze[r][c].reset();
             }
-        }
+        }*/
     }
     public String toChar(int num)
     {
