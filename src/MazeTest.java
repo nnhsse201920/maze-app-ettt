@@ -10,6 +10,9 @@ public class MazeTest extends TestCase {
         Maze maze = new Maze();
         boolean yes = maze.loadMaze("src/maze-1");
         assertEquals(true, yes);
+        Maze maze2 = new Maze();
+        boolean no = maze2.loadMaze("src/donotexist");
+        assertEquals(false, no);
     }
 
     public void testGetNeighbors() {
