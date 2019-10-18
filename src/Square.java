@@ -10,6 +10,7 @@ public class Square
     private int col;
     private int type;
     private int typeInitial;
+    private Square prev;
 
 
     /**
@@ -24,6 +25,7 @@ public class Square
         this.col = intCol;
         this.type = intType;
         this.typeInitial = intType;
+        this.prev = null;
     }
 
     public void reset()
@@ -56,6 +58,16 @@ public class Square
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public Square getPrev()
+    {
+        return this.prev;
+    }
+
+    public void setPrev(Square n)
+    {
+        this.prev = n;
     }
 
     public String toString()
