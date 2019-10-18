@@ -79,9 +79,8 @@ public class Square
         }
         return str;
     }
-
-
-    public boolean equals(Square o) {
+@Override
+    public boolean equals(Object o) {
         // self check
         if (this == o)
             return true;
@@ -89,12 +88,17 @@ public class Square
         if (o == null)
             return false;
         // type check and cast
-        if (this.getType() != o.getType())
+        /*if (this.getType() != o.getType())
             return false;
+        if (this.getCol() != o.getCol())
+            return false;
+        if (this.getRow() != o.getRow())
+            return false;
+        return  true;*/
         Square sq = (Square) o;
         // field comparison
-        return Objects.equals(o.getCol(), this.getCol())
-                && Objects.equals(o.getRow(), this.getRow())
-                && Objects.equals(o.getType(), this.getType());
+        return Objects.equals(sq.getCol(), sq.getCol())
+                && Objects.equals(sq.getRow(), sq.getRow())
+                && Objects.equals(sq.getType(), sq.getType());
     }
 }

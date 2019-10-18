@@ -7,7 +7,7 @@ public class Maze
     private Square[][] maze;
     private int row;
     private int col;
-    private Square start;
+    private Square start = new Square(0,0,2);
     private Square end;
 
     public boolean loadMaze(String fname)
@@ -57,7 +57,7 @@ public class Maze
                 n = maze[sR++][sC];
                 nay.add(n);
             }
-            if(sC == this.col)
+            else if(sC == this.col)
             {
                 Square n = maze[sR++][sC];
                 nay.add(n);
@@ -83,7 +83,7 @@ public class Maze
                 n = maze[sR][sC++];
                 nay.add(n);
             }
-            if(sC == this.col)
+            else if(sC == this.col)
             {
                 Square n = maze[sR--][sC];
                 nay.add(n);
