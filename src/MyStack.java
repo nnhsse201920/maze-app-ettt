@@ -25,8 +25,8 @@ public class MyStack<T> implements StackADT<T>
         }
         else
         {
-            this.top--;
-            return this.list.remove(this.top++);
+            this.top = this.top - 1;
+            return this.list.remove(this.top + 1);
         }
     }
 
@@ -44,7 +44,8 @@ public class MyStack<T> implements StackADT<T>
 
     public int size()
     {
-        return this.top++;
+        int size = this.top + 1;
+        return size;
     }
 
     public boolean isEmpty()

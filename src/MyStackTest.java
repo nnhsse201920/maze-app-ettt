@@ -17,9 +17,18 @@ public class MyStackTest extends TestCase
         assertEquals(6,(int)test.pop());
         assertEquals(7,(int)test.pop());
         assertEquals(8,(int)test.pop());
-        assertEquals(new NoSuchElementException(),test.pop());
+        //assertEquals(new NoSuchElementException(),test.pop()); //code does what its suppose to do
+        boolean caught = false;
+        try
+        {
+            test.pop();
+        }
+        catch(NoSuchElementException e)
+        {
+            caught = true;
+        }
+        assertEquals(true,caught);
     }
-
     public void testTop()
     {
         MyStack<Integer> test = new MyStack<>();
@@ -54,6 +63,10 @@ public class MyStackTest extends TestCase
     public void testClear()
     {
         MyStack<Integer> test = new MyStack<>();
-        MyStack<Integer> test2 = new MyStack<>();
+        test.push(8);
+        test.push(7);
+        test.push(6);
+        test.clear();
+        assertEquals(0,test.size());
     }
 }
