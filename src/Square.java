@@ -9,6 +9,7 @@ public class Square
     private int row;
     private int col;
     private int type;
+    private int typeInitial;
 
 
     /**
@@ -22,6 +23,12 @@ public class Square
         this.row = intRow;
         this.col = intCol;
         this.type = intType;
+        this.typeInitial = intType;
+    }
+
+    public void reset()
+    {
+        this.type = this.typeInitial;
     }
 
     public int getRow() {
