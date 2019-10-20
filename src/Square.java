@@ -99,7 +99,8 @@ public class Square
         return str;
     }
 @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+{
         // self check
         if (this == o)
             return true;
