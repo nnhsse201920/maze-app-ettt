@@ -10,6 +10,7 @@ public class Square
     private int col;
     private int type;
     private int typeInitial;
+    private Square prev;
 
 
     /**
@@ -24,6 +25,7 @@ public class Square
         this.col = intCol;
         this.type = intType;
         this.typeInitial = intType;
+        this.prev = null;
     }
 
     public void reset()
@@ -58,6 +60,16 @@ public class Square
         this.type = type;
     }
 
+    public Square getPrev()
+    {
+        return this.prev;
+    }
+
+    public void setPrev(Square n)
+    {
+        this.prev = n;
+    }
+
     public String toString()
     {
         String str = "";
@@ -87,7 +99,8 @@ public class Square
         return str;
     }
 @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+{
         // self check
         if (this == o)
             return true;
