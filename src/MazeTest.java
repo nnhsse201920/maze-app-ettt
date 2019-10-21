@@ -21,6 +21,7 @@ public class MazeTest extends TestCase {
         n.add(new Square(0,1,0));
         n.add(new Square(1, 0, 0));
         assertEquals(n,l);
+        
 
 
 
