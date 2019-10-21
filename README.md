@@ -1,5 +1,7 @@
 Maze Lab
 
+Reflection: We learned that testing is an important part of the coding process. Only after it was a bit too late did we realize that some of our code didn't work because our testing was not thorough enough. We kept in touch outside of class in order to finish our code, although flawed. Next time we will try to test each method to the extent of each case.
+
 # Purpose
 
 "In this lab you will use the power of a stack and a queue to explore and find your way through a maze. The purpose of this lab is to:
@@ -40,17 +42,20 @@ Maze Lab
 
 1. (**Teammate A & B**) implement Square class skeleton in square branch; implement Square class unit test; run test; implement Square class; run test; pull into master (**pair programming**)
 
-2. (**Teammate A & B**) implement Maze class skeleton in mazeSkeleton branch; pull into master (**pair programming**)(**Teammate B**) implement Maze unit test in mazeTest branch; run test; pull into master
+2. (**Teammate A & B**) implement Maze class skeleton in mazeSkeleton branch; pull into master (**pair programming**)
+(**Teammate B**) implement Maze unit test in mazeTest branch; run test; pull into master
 
 (**Teammate A**) implement Maze class in maze branch
 
 (**Teammate A & B**) run Maze unit test; debug Maze class; pull into master (**pair programming**)
 
-3. (**Teammate A**) implement MyStack and MyStackTest in stack branch; pull into master(**Teammate B**) implement MyQueue and MyQueueTest in queue branch; pull into master
+3. (**Teammate A**) implement MyStack and MyStackTest in stack branch; pull into master
+(**Teammate B**) implement MyQueue and MyQueueTest in queue branch; pull into master
 
 4. (**Teammate A & B**) implement MazeSolver in solver branch (**pair programming**)
 
-5. (**Teammate A**) implement MazeSolverStack in stackSolver branch (branched from solver and not master)(**Teammate B**) MazeSolverQueue in queueSolver branch (branched from solver and not master)
+5. (**Teammate A**) implement MazeSolverStack in stackSolver branch (branched from solver and not master)
+(**Teammate B**) MazeSolverQueue in queueSolver branch (branched from solver and not master)
 
 6. tie up loose ends; pull both branches into solver; pull into master
 
