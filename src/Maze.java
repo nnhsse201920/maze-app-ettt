@@ -52,25 +52,25 @@ public class Maze
         {
             if(sC == 0)
             {
-                Square n = maze[sR][sC++];
+                Square n = maze[sR][sC + 1];
                 nay.add(n);
-                n = maze[sR++][sC];
+                n = maze[sR + 1][sC];
                 nay.add(n);
             }
             else if(sC == this.col - 1)
             {
-                Square n = maze[sR++][sC];
+                Square n = maze[sR+ 1][sC];
                 nay.add(n);
-                n = maze[sR][sC--];
+                n = maze[sR][sC- 1];
                 nay.add(n);
             }
             else
             {
-                Square n = maze[sR][sC++];
+                Square n = maze[sR][sC+ 1];
                 nay.add(n);
-                n = maze[sR++][sC];
+                n = maze[sR+ 1][sC];
                 nay.add(n);
-                n = maze[sR][sC--];
+                n = maze[sR][sC- 1];
                 nay.add(n);
             }
         }
@@ -78,55 +78,55 @@ public class Maze
         {
             if(sC == 0)
             {
-                Square n = maze[sR--][sC];
+                Square n = maze[sR-1][sC];
                 nay.add(n);
-                n = maze[sR][sC++];
+                n = maze[sR][sC+1];
                 nay.add(n);
             }
             else if(sC == this.col - 1)
             {
-                Square n = maze[sR--][sC];
+                Square n = maze[sR-1][sC];
                 nay.add(n);
-                n = maze[sR][sC--];
+                n = maze[sR][sC-1];
                 nay.add(n);
             }
             else
             {
-                Square n = maze[sR--][sC];
+                Square n = maze[sR-1][sC];
                 nay.add(n);
-                n = maze[sR][sC++];
+                n = maze[sR][sC+1];
                 nay.add(n);
-                n = maze[sR][sC--];
+                n = maze[sR][sC-1];
                 nay.add(n);
             }
         }
         else if(sC == 0)
         {
-            Square n = maze[sR--][sC];
+            Square n = maze[sR-1][sC];
             nay.add(n);
-            n = maze[sR][sC++];
+            n = maze[sR][sC+1];
             nay.add(n);
-            n = maze[sR++][sC];
+            n = maze[sR+1][sC];
             nay.add(n);
         }
         else if(sC == this.col - 1)
         {
-            Square n = maze[sR--][sC];
+            Square n = maze[sR-1][sC];
             nay.add(n);
-            n = maze[sR++][sC];
+            n = maze[sR+1][sC];
             nay.add(n);
-            n = maze[sR][sC--];
+            n = maze[sR][sC-1];
             nay.add(n);
         }
         else
         {
-            Square n = maze[sR--][sC];
+            Square n = maze[sR-1][sC];
             nay.add(n);
-            n = maze[sR][sC++];
+            n = maze[sR][sC+1];
             nay.add(n);
-            n = maze[sR++][sC];
+            n = maze[sR+1][sC];
             nay.add(n);
-            n = maze[sR][sC--];
+            n = maze[sR][sC-1];
         }
         return nay;
     }

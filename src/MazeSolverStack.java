@@ -4,6 +4,7 @@ public class MazeSolverStack extends MazeSolver
     public MazeSolverStack(Maze maze)
     {
         super(maze);
+        stack = new MyStack<Square>();
         this.add(maze.getStart());
     }
 
@@ -37,5 +38,7 @@ public class MazeSolverStack extends MazeSolver
         a.loadMaze("src/maze-1");
         MazeSolver solver = new MazeSolverStack(a);
         solver.solve();
+        String n = solver.getPath();
+        System.out.println(n);
     }
 }
