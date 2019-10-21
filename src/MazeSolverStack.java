@@ -30,4 +30,12 @@ public class MazeSolverStack extends MazeSolver
     {
         return this.stack.pop();
     }
+
+    public static void main (String[] args)
+    {
+        Maze a = new Maze();
+        a.loadMaze("src/maze-1");
+        MazeSolver solver = new MazeSolverStack(a);
+        solver.solve();
+    }
 }
