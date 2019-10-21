@@ -38,6 +38,7 @@ public class MazeSolverQueue extends MazeSolver
         a.loadMaze("src/maze-1");
         MazeSolver solver = new MazeSolverQueue(a);
         solver.solve();
+        System.out.println(solver.getPath());
 
     }
 }

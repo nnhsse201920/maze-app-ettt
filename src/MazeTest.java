@@ -19,10 +19,21 @@ public class MazeTest extends TestCase {
         Maze maze = new Maze();
         maze.loadMaze("src/maze-4");
         Square sq = new Square(0, 0, 0);
-        ArrayList<Square> l = maze.getNeighbors(sq);
+        Square sq1 = new Square(3,4,1);
+        Square sq2 = new Square(0,2,0);
+        Square sq3 = new Square(0,9,3);
+
+
+        ArrayList<Square> l = maze.getNeighbors(sq3);
+
+
+
         ArrayList<Square> n = new ArrayList<Square>();
-        n.add(new Square(0,1,0));
-        n.add(new Square(1, 0, 0));
+        n.add(new Square(1,9,1));
+        n.add(new Square(0, 8, 0));
+       /* n.add(new Square(0, 1, 0));*/
+
+       /* n.add(new Square(3, 3, 1));*/
         assertEquals(n,l);
 
 
