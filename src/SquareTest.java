@@ -1,3 +1,4 @@
+/*
 import junit.framework.TestCase;
 
 public class SquareTest extends TestCase {
@@ -16,4 +17,4 @@ public class SquareTest extends TestCase {
 
     public void testToString() {
     }
-}
+}*/
