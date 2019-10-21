@@ -1,13 +1,16 @@
 import java.util.NoSuchElementException;
-import java.util.Iterator;
-public class LinkedQueue<T> implements MyQueue<T> implements QueueADT<T>
+
+
+public class MyQueue<T> implements QueueADT<T>
 {
-    private int n;         // number of elements on queue
     private Node first;    // beginning of queue
     private Node last;     // end of queue
+    private int n;         // size of queue
     public MyQueue()
     {
-
+        this.first = null;
+        this.last = null;
+        n = 0;
     }
     /**
      * Add an item to the queue
@@ -16,6 +19,17 @@ public class LinkedQueue<T> implements MyQueue<T> implements QueueADT<T>
     public void enqueue(T item)
     {
 
+        Node prev = last;
+        last = new Node();
+        last.key = item;
+        last.next = null;
+        if (isEmpty()) {
+            first = last;
+        }
+        else {
+            prev.next = last;
+        }
+        n++;
     }
 
     /**
@@ -25,7 +39,17 @@ public class LinkedQueue<T> implements MyQueue<T> implements QueueADT<T>
      */
     public T dequeue()
     {
-
+        if (isEmpty()) {
+            throw new NoSuchElementException("Queue underflow");
+        }
+        T item = (T) first.key;
+        first = first.next;
+        n--;
+        if (isEmpty())
+        {
+            last = null;   // to avoid loitering
+        }
+        return item;
     }
 
     /**
@@ -35,7 +59,8 @@ public class LinkedQueue<T> implements MyQueue<T> implements QueueADT<T>
      */
     public T front()
     {
-
+        if (isEmpty()) throw new NoSuchElementException("Queue underflow");
+        return (T) first.key;
     }
 
     /**
@@ -44,7 +69,7 @@ public class LinkedQueue<T> implements MyQueue<T> implements QueueADT<T>
      */
     public int size()
     {
-
+        return n;
     }
 
     /**
@@ -53,7 +78,7 @@ public class LinkedQueue<T> implements MyQueue<T> implements QueueADT<T>
      */
     public boolean isEmpty()
     {
-
+        return first == null;
     }
 
     /**
@@ -61,6 +86,8 @@ public class LinkedQueue<T> implements MyQueue<T> implements QueueADT<T>
      */
     public void clear()
     {
-
+        this.first = null;
+        this.last = null;
+        this.n = 0;
     }
 }
