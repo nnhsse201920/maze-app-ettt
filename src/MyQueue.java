@@ -3,9 +3,9 @@ import java.util.NoSuchElementException;
 
 public class MyQueue<T> implements QueueADT<T>
 {
-    private Node first;    // beginning of queue
-    private Node last;     // end of queue
-    private int n;         // size of queue
+    private Node first;
+    private Node last;
+    private int n;
     public MyQueue()
     {
         this.first = null;
@@ -39,15 +39,16 @@ public class MyQueue<T> implements QueueADT<T>
      */
     public T dequeue()
     {
-        if (isEmpty()) {
-            throw new NoSuchElementException("Queue underflow");
+        if (isEmpty())
+        {
+            throw new NoSuchElementException();
         }
         T item = (T) first.key;
         first = first.next;
         n--;
         if (isEmpty())
         {
-            last = null;   // to avoid loitering
+            last = null;
         }
         return item;
     }
@@ -59,7 +60,10 @@ public class MyQueue<T> implements QueueADT<T>
      */
     public T front()
     {
-        if (isEmpty()) throw new NoSuchElementException("Queue underflow");
+        if (isEmpty())
+        {
+            throw new NoSuchElementException();
+        }
         return (T) first.key;
     }
 
