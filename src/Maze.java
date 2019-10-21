@@ -57,7 +57,7 @@ public class Maze
                 n = maze[sR++][sC];
                 nay.add(n);
             }
-            else if(sC == this.col)
+            else if(sC == this.col - 1)
             {
                 Square n = maze[sR++][sC];
                 nay.add(n);

@@ -84,7 +84,7 @@ public abstract class MazeSolver
                 ArrayList<Square> around = this.maze.getNeighbors(n);
                 for(Square x : around)
                 {
-                    if(x.getPrev() != null)
+                    if(x.getPrev() == null)
                     {
                         x.setPrev(n);
                         this.add(x);
