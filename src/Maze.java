@@ -134,7 +134,7 @@ public class Maze {
         for (int r = 0; r < this.row; r++) {
             for (int c = 0; c < this.col; c++)
             {
-                mazeS += toChar(maze[r][c].getType());
+                mazeS += maze[r][c].toString();
             }
             mazeS += "\n";
         }
