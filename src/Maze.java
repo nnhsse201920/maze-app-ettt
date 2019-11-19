@@ -2,134 +2,93 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
-public class Maze
-{
+public class Maze {
     private Square[][] maze;
     private int row;
     private int col;
-    private Square start = new Square(0,0,2);
+    private Square start = new Square(0, 0, 2);
     private Square end;
 
-    public boolean loadMaze(String fname)
-    {
-        try
-        {
+    public boolean loadMaze(String fname) {
+        try {
             Scanner in = new Scanner(new File(fname));
             this.row = in.nextInt();
             this.col = in.nextInt();
             this.maze = new Square[this.row][this.col];
 
             for (int r = 0; r < this.row; r++) {
-                for (int c = 0; c < this.col; c++)
-                {
+                for (int c = 0; c < this.col; c++) {
                     Square n = new Square(r, c, in.nextInt());
-                    if(n.getType() == 2)
-                    {
+                    if (n.getType() == 2) {
                         this.start = n;
-                    }
-                    else if(n.getType() == 3)
-                    {
+                    } else if (n.getType() == 3) {
                         this.end = n;
                     }
                     maze[r][c] = n;
                 }
             }
 
-        }
-        catch(FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             return false;
         }
         return true;
     }
 
-    public ArrayList<Square> getNeighbors(Square sq)
-    {
-        ArrayList<Square> nay = new ArrayList<>();
-        int sC = sq.getCol();
-        int sR = sq.getRow();
-        if(sR == 0)
-        {
-            if(sC == 0)
-            {
-                Square n = maze[sR][sC + 1];
-                nay.add(n);
-                n = maze[sR + 1][sC];
-                nay.add(n);
-            }
-            else if(sC == this.col - 1)
-            {
-                Square n = maze[sR+ 1][sC];
-                nay.add(n);
-                n = maze[sR][sC- 1];
-                nay.add(n);
-            }
-            else
-            {
-                Square n = maze[sR][sC+ 1];
-                nay.add(n);
-                n = maze[sR+ 1][sC];
-                nay.add(n);
-                n = maze[sR][sC- 1];
-                nay.add(n);
-            }
+    public ArrayList<Square> getNeighbors(Square sq) {
+        ArrayList<Square> n = new ArrayList<>();
+        int row = sq.getRow();
+        int col = sq.getCol();
+
+        if (row == 0 && col == 0) {
+            n.add(maze[row + 1][col]);
+            n.add(maze[row][col + 1]);
+            return n;
+        } else if (row == 0 && col == maze[0].length - 1) {
+            n.add(maze[row + 1][col]);
+            n.add(maze[row][col - 1]);
+            return n;
+        } else if (row == maze.length - 1 && col == maze[0].length - 1) {
+            n.add(maze[row - 1][col]);
+            n.add(maze[row][col - 1]);
+            return n;
+        } else if (row == maze.length - 1 && col == 0) {
+            n.add(maze[row - 1][col]);
+            n.add(maze[row][col + 1]);
+            return n;
+        } else if (row == 0 && (col != 0 && col != maze[0].length - 1)) {
+            n.add(maze[row + 1][col]);
+            n.add(maze[row][col - 1]);
+            n.add(maze[row][col + 1]);
+            return n;
+        } else if (col == 0 && (row != 0 && row != maze.length - 1)) {
+            n.add(maze[row - 1][col]);
+            n.add(maze[row + 1][col]);
+            n.add(maze[row][col + 1]);
+
+            return n;
+        } else if (row == maze.length - 1 && (col != 0 && col != maze[0].length - 1)) {
+            n.add(maze[row - 1][col]);
+            n.add(maze[row][col - 1]);
+            n.add(maze[row][col + 1]);
+
+            return n;
+        } else if (col == maze[0].length - 1 && (row != 0 && row != maze.length - 1)) {
+            n.add(maze[row - 1][col]);
+            n.add(maze[row + 1][col]);
+            n.add(maze[row][col - 1]);
+            return n;
+        } else {
+            n.add(maze[row - 1][col]);
+            n.add(maze[row + 1][col]);
+            n.add(maze[row][col - 1]);
+            n.add(maze[row][col + 1]);
+            return n;
         }
-        else if(sR == this.row - 1)
-        {
-            if(sC == 0)
-            {
-                Square n = maze[sR-1][sC];
-                nay.add(n);
-                n = maze[sR][sC+1];
-                nay.add(n);
-            }
-            else if(sC == this.col - 1)
-            {
-                Square n = maze[sR-1][sC];
-                nay.add(n);
-                n = maze[sR][sC-1];
-                nay.add(n);
-            }
-            else
-            {
-                Square n = maze[sR-1][sC];
-                nay.add(n);
-                n = maze[sR][sC+1];
-                nay.add(n);
-                n = maze[sR][sC-1];
-                nay.add(n);
-            }
-        }
-        else if(sC == 0)
-        {
-            Square n = maze[sR-1][sC];
-            nay.add(n);
-            n = maze[sR][sC+1];
-            nay.add(n);
-            n = maze[sR+1][sC];
-            nay.add(n);
-        }
-        else if(sC == this.col - 1)
-        {
-            Square n = maze[sR-1][sC];
-            nay.add(n);
-            n = maze[sR+1][sC];
-            nay.add(n);
-            n = maze[sR][sC-1];
-            nay.add(n);
-        }
-        else
-        {
-            Square n = maze[sR-1][sC];
-            nay.add(n);
-            n = maze[sR][sC+1];
-            nay.add(n);
-            n = maze[sR+1][sC];
-            nay.add(n);
-            n = maze[sR][sC-1];
-        }
-        return nay;
+
+
     }
+
+
     public Square getStart()
     {
         return this.start;
@@ -180,5 +139,15 @@ public class Maze
             mazeS += "\n";
         }
         return mazeS;
+    }
+    public Square getFinish()
+    {   Square s = null;
+        for (int r=0; r < maze.length; r++) {
+            for (int c=0; c < maze[0].length; c++) {
+                if (maze[r][c].getType() == 3)
+                {s =  maze[r][c];}
+            }
+        }
+        return s;
     }
 }

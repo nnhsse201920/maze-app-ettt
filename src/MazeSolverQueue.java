@@ -4,41 +4,35 @@ public class MazeSolverQueue extends MazeSolver
     public MazeSolverQueue(Maze maze)
     {
         super(maze);
+    }
+
+    public void makeEmpty() {
         q = new MyQueue<Square>();
-        q.enqueue(maze.getStart());
     }
 
-    @Override
-    public void makeEmpty()
-    {
-        this.q.clear();
-    }
-
-    @Override
     public boolean isEmpty()
     {
-        return this.q.isEmpty();
+        return q.isEmpty();
     }
 
-    @Override
     public void add(Square sq)
     {
-        this.q.enqueue(sq);
+        q.enqueue(sq);
     }
 
-    @Override
     public Square next()
     {
-        return this.q.dequeue();
+        return q.dequeue();
     }
+    public static void main(String[] args)
+{
+    Maze maze = new Maze();
+    maze.loadMaze("src/maze-3");
+    MazeSolver solver = new MazeSolverQueue(maze);
+    solver.solve();
+    System.out.println(solver.getPath());
+    System.out.println(maze.getFinish().getPrev());
 
-    public static void main (String[] args)
-    {
-        Maze a = new Maze();
-        a.loadMaze("src/maze-1");
-        MazeSolver solver = new MazeSolverQueue(a);
-        solver.solve();
-        System.out.println(solver.getPath());
 
-    }
+}
 }

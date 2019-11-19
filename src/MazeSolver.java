@@ -5,6 +5,7 @@ public abstract class MazeSolver
     public Maze maze;
     public boolean endreached = false;
     public Square current;
+    private boolean isSolved;
 
 
     abstract void makeEmpty();
@@ -17,7 +18,10 @@ public abstract class MazeSolver
 
     public MazeSolver(Maze maze)
     {
+        makeEmpty();
+        add(maze.getStart());
         this.maze = maze;
+        this.isSolved = false;
     }
 
     public boolean isSolved()
@@ -38,70 +42,89 @@ public abstract class MazeSolver
 
     public String getPath()
     {
-        String a = "";
-        if(this.isSolved())
+        Square p = maze.getFinish().getPrev();
+        if(p == null)
         {
-            if(this.endreached)
+
+            return "You are not at the exit.";
+
+        }
+        String output = maze.getStart().toString();
+        ArrayList<Square> l = new ArrayList<>();
+        Square s = maze.getFinish();
+        while(s!= maze.getStart())
+        {
+            l.add(s);
+            s = s.getPrev();
+
+            if(s != maze.getStart())
             {
-                Stack<Square> set = new Stack<>();
-                while(this.current != null)
-                {
-                    set.push(this.current);
-                    this.current = this.current.getPrev();
-                }
-                while(!set.empty())
-                {
-                    a = a + "[" + set.peek().getRow() + ", " + set.pop().getCol() + "], ";
-                }
-                return a;
-            }
-            else
-            {
-                return "The maze cannot be solved";
+                s.setExplored(3);
+
             }
         }
-        return "The maze has not been solved yet";
+
+
+        for(int i = l.size()-1; i>0; i--)
+        {
+            output += "=>["+l.get(i).getRow()+","+l.get(i).getCol()+"]";
+        }
+        output += "=>"+ maze.getFinish().toString();
+        return output;
     }
 
     public Square step()
     {
-        Square n = null;
-        if(this.isEmpty())
+        if (isEmpty())
         {
-            this.isSolved();
+            return null;
         }
-        else
-        {
-            n = this.next();
-            if(n.getType() == 3)
-            {
-                this.endreached = true;
-                this.current = n;
-                this.isSolved();
-            }
-            else
-            {
-                ArrayList<Square> around = this.maze.getNeighbors(n);
-                for(Square x : around)
-                {
-                    if(x.getPrev() == null)
-                    {
-                        x.setPrev(n);
-                        this.add(x);
-                    }
-                }
+        Square n = next();
 
+
+        ArrayList<Square> s = maze.getNeighbors(n);
+        for(int i = s.size()-1; i >= 0; i--)
+        {
+            if(s.get(i).getType() == 3)
+            {
+                s.get(i).setPrev(n);
+                getPath();
+                makeEmpty();
+                return n;
+            }
+            if (s.get(i).getType() != 0 || s.get(i).getExplored() != 0)
+            {
+                s.remove(i);
             }
         }
+        for (int i = 0; i <= s.size()-1; i++)
+        {
+            s.get(i).setExplored(1);
+            s.get(i).setPrev(n);
+            add(s.get(i));
+
+        }
+        n.setExplored(2);
         return n;
     }
 
     public void solve()
     {
-        while(!this.isSolved())
+        while (isSolved == false)
         {
-            this.step();
+            System.out.println(maze);
+            Square s = step();
+            if (s == maze.getFinish())
+            {
+                break;
+            }
+            else if(s == null)
+            {
+                isSolved = true;
+            }
+
         }
+        isSolved = true;
 
     }
 }

@@ -1,44 +1,40 @@
 public class MazeSolverStack extends MazeSolver
 {
     private MyStack<Square> stack;
+
     public MazeSolverStack(Maze maze)
     {
         super(maze);
-        stack = new MyStack<Square>();
-        this.add(maze.getStart());
     }
-
-    @Override
     public void makeEmpty()
     {
-        this.stack.clear();
+
+        stack = new MyStack<>();
     }
 
-    @Override
-    public boolean isEmpty()
-    {
-        return this.stack.isEmpty();
-    }
 
-    @Override
-    public void add(Square sq)
-    {
-        this.stack.push(sq);
-    }
-
-    @Override
     public Square next()
     {
-        return this.stack.pop();
+        return stack.pop();
+    }
+
+    public void add(Square sq)
+    {
+        stack.push(sq);
+    }
+
+    public boolean isEmpty()
+    {
+        return stack.isEmpty();
     }
 
     public static void main (String[] args)
     {
-        Maze a = new Maze();
-        a.loadMaze("src/maze-1");
-        MazeSolver solver = new MazeSolverStack(a);
+        Maze m = new Maze();
+        m.loadMaze("src/maze-occs");
+        MazeSolver solver = new MazeSolverStack(m);
         solver.solve();
-        String n = solver.getPath();
-        System.out.println(n);
+        System.out.println(solver.getPath());
+        System.out.println(m.getFinish().getPrev());
     }
 }

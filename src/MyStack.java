@@ -1,68 +1,39 @@
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
+import java.util.ArrayList;
+
 public class MyStack<T> implements StackADT<T>
 {
-    private ArrayList<T> list;
-    private int top;
+    private ArrayList<T> a = new ArrayList<T>();
 
-    public MyStack()
+    public void push(T item)
     {
-        this.list = new ArrayList<>();
-        this.top = -1;
+        a.add(item);
     }
 
-    public void push(T n)
+    public T pop() throws NoSuchElementException
     {
-        this.list.add(n);
-        this.top++;
+        return a.remove(a.size()-1);
     }
 
-    public T pop()
+    public T top() throws NoSuchElementException
     {
-        if(this.top == -1)
-        {
-            throw new NoSuchElementException();
-        }
-        else
-        {
-            this.top = this.top - 1;
-            return this.list.remove(this.top + 1);
-        }
-    }
-
-    public T top()
-    {
-        if(this.top == -1)
-        {
-            throw new NoSuchElementException();
-        }
-        else
-        {
-            return this.list.get(this.top);
-        }
+        return a.get(a.size()-1);
     }
 
     public int size()
     {
-        int size = this.top + 1;
-        return size;
+        return a.size();
     }
 
     public boolean isEmpty()
     {
-        if(this.top == -1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return a.isEmpty();
     }
 
-    public void clear()
+    public  void clear()
     {
-        this.top = -1;
-        this.list = new ArrayList<>();
+        a.clear();
     }
+
+
 }

@@ -1,124 +1,153 @@
-import java.util.Objects;
-
 public class Square
 {
-    public static final int SPACE = 0;
-    public static final int WALL = 1;
-    public static final int START = 2;
-    public static final int END = 3;
+
+    private Square previous;
+    private int type;
+    // 0 = open, 1 = wall, 2 = entrance, 3 = exit,
     private int row;
     private int col;
-    private int type;
-    private int typeInitial;
-    private Square prev;
+    private int explored;
+    // -1 = DNE, 0 = blank, 1 = on list, 2 = explored, 3 = on path
 
-
-    /**
-     * Constructor for objects of class Square
-     * @param intRow the row for this square
-     * @param intCol the col for this square
-     * @param intType the type fof this square
-     */
-    public Square (int intRow, int intCol, int intType)
+    //constructor
+    public Square(int row, int col, int type)
     {
-        this.row = intRow;
-        this.col = intCol;
-        this.type = intType;
-        this.typeInitial = intType;
-        this.prev = null;
+        this.previous = null;
+        this.row = row;
+        this.col = col;
+        this.type = type;
+        if (this.type == 0)
+        {
+            this.explored = 0;
+        }
+        else
+        {
+            this.explored = -1;
+        }
+    }
+
+    public void setType(int type)
+    {
+        this.type = type;
+    }
+
+    public void setRow(int row)
+    {
+        this.row = row;
+    }
+
+    public void setCol(int col)
+    {
+        this.col = col;
+    }
+
+    public void setPrev(Square s){this.previous = s;}
+
+    //returns row
+    public int getRow()
+    {
+        return this.row;
+    }
+
+    //returns column
+    public int getCol()
+    {
+        return this.col;
+    }
+
+    //returns type
+    public int getType()
+    {
+        return this.type;
     }
 
     public void reset()
     {
-        this.type = this.typeInitial;
+        if (this.type == 0)
+        {
+            this.explored = 0;
+        }
+        else
+        {
+            this.explored = -1;
+        }
     }
 
-    public int getRow() {
-        return row;
-    }
 
-    public void setRow(int row) {
-        this.row = row;
-    }
 
-    /**
-     * @return the col of this square
-     */
-    public int getCol() {
-        return col;
-    }
-
-    public void setCol(int col) {
-        this.col = col;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public Square getPrev()
-    {
-        return this.prev;
-    }
-
-    public void setPrev(Square n)
-    {
-        this.prev = n;
-    }
-
+    //returns string
     public String toString()
     {
-        String str = "";
-        switch(this.type)
+        if (this.type == 0)
         {
-            case Square.SPACE:
+            if(this.explored == 1)
             {
-                str = "_";
-                break;
+                return "0";
             }
-            case Square.WALL:
+            if(this.explored == 2)
             {
-                str = "#";
-                break;
+                return ".";
             }
-            case Square.START:
+            else if(this.explored == 3)
             {
-                str = "S";
-                break;
+                return "x";
             }
-            case Square.END:
+            else
             {
-                str = "E";
-                break;
+                return "_";
             }
+
         }
-        return str;
+        else if (this.type == 1)
+        {
+            return "#";
+        }
+        else if (this.type == 2)
+        {
+            return "S";
+        }
+        else if (this.type == 3)
+        {
+            return "E";
+        }
+        else return "Incorrect Type, not in range";
     }
-@Override
+
+    @Override
     public boolean equals(Object o)
-{
-        // self check
-        if (this == o)
-            return true;
-        // null check
-        if (o == null)
+    {
+
+        Square s = (Square)o;
+        boolean r = this.row == s.getRow();
+        boolean c = this.col == s.getCol();
+        boolean t = this.type == s.getType();
+        if(r && c && r)
+        {
+            if(r == false)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+        }
+        else
+        {
             return false;
-        // type check and cast
-        /*if (this.getType() != o.getType())
-            return false;
-        if (this.getCol() != o.getCol())
-            return false;
-        if (this.getRow() != o.getRow())
-            return false;
-        return  true;*/
-        Square sq = (Square) o;
-        // field comparison
-        return Objects.equals(sq.getCol(), sq.getCol())
-                && Objects.equals(sq.getRow(), sq.getRow())
-                && Objects.equals(sq.getType(), sq.getType());
+        }
+    }
+
+    public int getExplored() {
+        return explored;
+    }
+
+    public void setExplored(int explored) {
+        this.explored = explored;
+    }
+
+    public Square getPrev() {
+        return previous;
     }
 }
